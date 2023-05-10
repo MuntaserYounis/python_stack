@@ -41,8 +41,9 @@ def greater(arr):
         print(arr[x])
         if arr[x] > arr[1]:
             list_2.append(arr[x])
+            print(len(list_2))
             print(list_2)
-    if len(list_2) <= 2:
+    if len(list_2) < 2:
         print("False")
     else:
         return list_2
