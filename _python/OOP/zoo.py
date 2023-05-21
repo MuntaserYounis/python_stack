@@ -2,8 +2,11 @@ class Zoo:
     def __init__(self, zoo_name):
         self.animals = []
         self.name = zoo_name
-    def add_lion(self, name,age):
-        self.animals.append( Lion(name,age) )
+
+    def add_animal(self,animal):
+        self.animals.append(animal)
+    def add_lion(self, name):
+        self.animals.append( Lion(name) )
     def add_tiger(self, name,age):
         self.animals.append( Tiger(name,age) )
     def print_all_info(self):
@@ -23,8 +26,9 @@ class animal:
         self.happiness_level += 10
         return self
 class Lion(animal):
-    def __init__(self, name, age, health_level=30, happiness_level=40):
+    def __init__(self, name, age=10, health_level=30, happiness_level=40):
         super().__init__(name, age, health_level, happiness_level)
+
     def speak(self):
         print("Roar")
 class Tiger(animal):
@@ -36,9 +40,10 @@ class Bear(animal):
         super().__init__(name, age, health_level, happiness_level)
 
 zoo1 = Zoo("John's Zoo")
-
-zoo1.add_lion("Nala",24)
-zoo1.add_lion("Simba",22)
+Lion1 = Lion("Nala",15,35,65)
+zoo1.add_animal(Lion1)
+zoo1.add_lion("Nala")
+zoo1.add_lion("Simba")
 zoo1.add_tiger("Rajah",16)
 zoo1.add_tiger("Shere Khan",22)
 zoo1.print_all_info()
