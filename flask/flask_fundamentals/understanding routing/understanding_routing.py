@@ -19,7 +19,7 @@ def repeat(number,name):
     return f'{name} '* int(number)
 
 @app.errorhandler(404)
-def page_not_found(error):
+def page_not_found(abcd):
     return 'Sorry! No Response. Try again.'
 
 if __name__ == "__main__" :
