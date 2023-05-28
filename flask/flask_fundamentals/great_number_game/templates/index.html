@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        
+        .red, .green{
+            padding: 10px 10px;
+            color: white;
+            border: 1px solid black;
+            width: 65px;
+            height: 65px;
+        }
+        .red{
+            background-color: red;
+        }
+        .green{
+            background-color: green;
+        }
+        #submit{
+            margin-top: 60px;
+        }
+    </style>
+    <title>Document</title>
+</head>
+<body>
+    <center>
+    
+        <h3>Welcome to the great number game!</h3>
+        <p>I'm thinking of a number between 1 and 100</p>
+        <p>Take a guess!</p>
+        {% if guess > random%}
+        <div class="red">
+            <p> Too High !</p>
+        </div>
+        {% elif guess < random %}
+        <div class="red">
+            <p> Too low !</p>
+        </div>
+        {% else %}
+        <div class="green">
+            <p>{{guess}} was the number!</p>
+            <form action="/clr" method="post">
+                <input type="submit" value="play again">
+            </form>
+        </div>
+        {% endif %}
+        <form action="/process" method="post" id="submit">
+        <input type="text" name="myguess">
+        <input type="submit" value="Submit">
+        </form>
+    </center>
+</body>
+</html>
