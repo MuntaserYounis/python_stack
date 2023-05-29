@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='style.css')}}">
+    <title>Ninja Gold</title>
+</head>
+<body>
+    <label for="gold">Your Gold: </label>
+    <textarea name="yoursum" rows="1" cols="20">{{gold}}</textarea>
+    <div class="all_bldgs">
+        <form action="/process" method="post">
+            <h3>Farm</h3>
+            <p>(earns 10-20 golds)</p>
+            <input type="hidden" name="building" value="farm">
+            <input type="submit" value="Find Gold!">
+        </form>
+        <form action="/process" method="post">
+            <h3>Cave</h3>
+            <p>(earns 5-10 golds)</p>
+            <input type="hidden" name="building" value="cave">
+            <input type="submit" value="Find Gold!">
+        </form>
+        <form action="/process" method="post">
+            <h3>House</h3>
+            <p>(earns 2-5 golds)</p>
+            <input type="hidden" name="building" value="house">
+            <input type="submit" value="Find Gold!">
+        </form>
+        <form action="/process" method="post">
+            <h3>Casino</h3>
+            <p>(earns/takes 0-50 golds)</p>
+            <input type="hidden" name="building" value="casino">
+            <input type="submit" value="Find Gold!">
+            
+        </form>
+        <form action="/clear" method="post">
+            <input type="submit" value="Start again">
+        </form>
+    </div>
+    
+    <p>Activites:</p>
+    <div id="textarea">
+        {% for i in activity_list %}
+            {% if 'earned' in i %}
+                <h2 class="green">{{i}}</h2>
+            {% elif 'lost' in i %}
+                <h2 class="red">{{i}}</h2>
+            {% endif %}
+        {% endfor %}
+    </div>
+    
+    
+</body>
+</html>

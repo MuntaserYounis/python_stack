@@ -1,0 +1,24 @@
+.all_bldgs{
+    display: flex;
+    justify-content: space-around;
+}
+
+#outputs{
+    width: 100%;
+}
+
+h2{
+    text-align: center;
+    font-weight: bolder;
+    font-size: larger;
+    color: #45a049;
+}
+
+
+.red{
+    color:red;
+}
+
+.green{
+    color: #45a049;
+}
