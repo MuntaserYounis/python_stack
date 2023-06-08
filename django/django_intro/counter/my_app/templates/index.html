@@ -10,7 +10,7 @@
     <form action="" method="post">
         {% csrf_token %}
         <h1>Counter</h1>
-        <p>{{muntaser}} Times.</p>
+        <p>{{request.session.counter}} Times.</p>
         
     </form>
     <form action="/destroy_session" method="post">
