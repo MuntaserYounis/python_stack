@@ -11,8 +11,8 @@
     <h3>Create a User</h3>
     <form action='/users' method='post'>
         {% csrf_token %}
-        Name: <input type='text' name='name'>
-        Email: <input type='text' name='email'>
+        <p>Name: <input type='text' name='name'></p>
+        <p>Email: <input type='text' name='email'></p>
         <button type='submit'>Create User</button>
     </form>
 
