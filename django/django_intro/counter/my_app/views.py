@@ -9,4 +9,4 @@ def index(request):
 
 def delete(request):
     del request.session['counter']
-    return redirect('/')
+    return redirect('/') 
