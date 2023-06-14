@@ -8,9 +8,10 @@ def index(request):
         request.session['activities'] = []
         
     gold = request.session['gold']
-    # activities = request.session['activities']
+    activities = request.session['activities']
     context= {
         'gold' : gold,
+        'activites' : activities,
         
     }
     return render(request,'index.html',context)
@@ -45,6 +46,6 @@ def process(request):
             text = f'You failed a quest and lost but lost no gold. good luck next time {timestamp}'
     
     request.session['gold'] += amount
-    # request.session['activities'].insert(0,text)
+    request.session['activities'].insert(0,text)
     print(amount)
     return redirect('/')
