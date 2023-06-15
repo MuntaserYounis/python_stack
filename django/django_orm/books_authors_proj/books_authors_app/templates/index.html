@@ -27,7 +27,7 @@
                     <th>Title</th>
                     <th>Action</th>
                 </tr>
-                    <form action="books/<id>" method="post">
+                    <form action="books/<int:id>" method="post">
                     {% for book in books %}
                     <tr>
                         <td>{{book.id}}</td>
