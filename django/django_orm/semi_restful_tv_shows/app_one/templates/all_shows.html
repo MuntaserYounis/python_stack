@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ready (All)</title>
+</head>
+<body>
+    <h1>All Shows</h1>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Network</th>
+            <th>Release Date</th>
+            <th>Actions</th>
+        </tr>
+        {% for this in all %}
+        <tr>
+            
+            <td>{{this.id}}</td>
+            <td>{{this.title}}</td>
+            <td>{{this.network}}</td>
+            <td>{{this.release_date}}</td>
+            <td><a href="/shows/{{this.id}}">Show</a>|<a href="/shows/{{this.id}}/edit"> Edit</a> |<a href="{% url 'destroy' this.id %}"> Delete</a></td>
+            
+        </tr>
+        {% endfor %}
+        
+    </table>
+    <a href="#">Add a New Show</a>
+</body>
+</html>

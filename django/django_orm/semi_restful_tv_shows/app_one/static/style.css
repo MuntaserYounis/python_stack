@@ -1,0 +1,30 @@
+html {
+    display: table;
+    margin: auto;
+    /*
+    justify-content: space-around; */
+}
+
+body {
+    display: table-cell;
+    vertical-align: middle;
+    width: 500px;
+    padding: 10%;
+} 
+
+/* p{
+    white-space: pre;
+} */
+
+.middle{
+    display: flex;
+    
+}
+.block{
+    margin-right: 20px;
+}
+
+#go-back{
+    float: right;
+    margin-right: 5px;
+}

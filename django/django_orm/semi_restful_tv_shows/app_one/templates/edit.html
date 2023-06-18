@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update</title>
+</head>
+<body>
+    <a href="#" id="go-back">Go Back</a>
+    <h1>Edit Show {{this_show.id}} </h1>
+    <form action="{% url 'update' this_show.id %}" method="post">
+        {% csrf_token %}
+        <p>Title</p>
+        <input type="text" name="title"><br>
+        <div class="middle">
+            <div class="block">
+                <label>Network</label><br>
+                <input type="text" name="network">
+            </div>
+            <div class="block">
+                <label>Release Date</label><br>
+                <input type="date" name="date"><br>
+            </div>
+        </div>
+        <label>Description</label><br>
+        <textarea rows="10" cols="30" name="desc"></textarea><br>
+        <button type="submit">Update</button><br>
+    </form>
+    <a href="/shows/{{this_show.id}}">Go to Show</a>
+</body>
+</html>
