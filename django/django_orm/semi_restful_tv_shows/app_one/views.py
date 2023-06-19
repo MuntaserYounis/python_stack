@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect
 from .models import Show
 from datetime import datetime
+from django.contrib import messages
 def index(request):
     return redirect('/shows')
 
@@ -14,14 +15,18 @@ def new(request):
     return render(request,'new.html')
 
 def create(request):
-    date_string = request.POST['date']
-    print(date_string)
-    new = Show.objects.create(
-        title = request.POST['title'], 
-        network = request.POST['network'],
-        release_date = datetime.strptime(request.POST['date'],'%Y-%m-%d'),desc = request.POST['desc'])
-    new.save()
-    return redirect(f'/shows/{new.id}')
+    errors = Show.objects.validator(request.POST)
+    if len(errors)>0:
+        for key,value in errors.items():
+            messages.error(request, value)
+        return redirect('new')
+    else:
+        new = Show.objects.create(
+            title = request.POST['title'], 
+            network = request.POST['network'],
+            release_date = datetime.strptime(request.POST['date'],'%Y-%m-%d'),desc = request.POST['desc'])
+        new.save()
+        return redirect(f'/shows/{new.id}')
 
 def shows(request,id):
     show = Show.objects.get(id = id)
@@ -31,18 +36,26 @@ def shows(request,id):
     return render(request,'shows.html',context)
 
 def edit(request,id):
+
     this_show = Show.objects.get(id = id)
     context = {'this_show':this_show}
     return render(request,'edit.html',context)
 
 def update(request,id):
     my_show = Show.objects.get(id=id)
-    my_show.title = request.POST['title']
-    my_show.network = request.POST['network']
-    my_show.release_date = datetime.strptime(request.POST['date'],'%Y-%m-%d')
-    my_show.desc = request.POST['desc']
-    my_show.save()
-    return redirect(f'/shows/{my_show.id}')
+    errors = Show.objects.validator(request.POST)
+    if len(errors)>0:
+        for key,value in errors.items():
+            messages.error(request, value)
+        return redirect(f'/shows/{my_show.id}/edit')
+    else:
+        my_show = Show.objects.get(id=id)
+        my_show.title = request.POST['title']
+        my_show.network = request.POST['network']
+        my_show.release_date = datetime.strptime(request.POST['date'],'%Y-%m-%d')
+        my_show.desc = request.POST['desc']
+        my_show.save()
+        return redirect(f'/shows/{my_show.id}')
 
 def destroy(request,id):
     to_destroy = Show.objects.get(id=id)

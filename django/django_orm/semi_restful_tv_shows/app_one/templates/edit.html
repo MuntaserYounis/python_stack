@@ -12,21 +12,28 @@
     <form action="{% url 'update' this_show.id %}" method="post">
         {% csrf_token %}
         <p>Title</p>
-        <input type="text" name="title"><br>
+        <input type="text" name="title" value="{{this_show.title}}"><br>
         <div class="middle">
             <div class="block">
                 <label>Network</label><br>
-                <input type="text" name="network">
+                <input type="text" name="network" value="{{this_show.network}}">
             </div>
             <div class="block">
                 <label>Release Date</label><br>
-                <input type="date" name="date"><br>
+                <input type="date" name="date" value="this_show.release_date"><br>
             </div>
         </div>
         <label>Description</label><br>
-        <textarea rows="10" cols="30" name="desc"></textarea><br>
+        <textarea rows="10" cols="30" name="desc">{{this_show.desc}}</textarea><br>
         <button type="submit">Update</button><br>
     </form>
+    {% if messages %}
+        <ul class="messages">    
+            {% for message in messages %}    
+                <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
+            {% endfor %}
+        </ul>
+        {% endif %}
     <a href="/shows/{{this_show.id}}">Go to Show</a>
 </body>
 </html>
