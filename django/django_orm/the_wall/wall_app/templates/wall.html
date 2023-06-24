@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>Welcome {{request.session.username}}</p>
+    <a href="/logout">logout</a></div>
+    <p>Post a Message</p>
+    <form action="/add_message" method="post">
+        {% csrf_token %}
+        <textarea name="message_area" rows="5" cols="50"></textarea><br>
+        <button type="submit">Post a Message</button>
+    </form>
+    <div>
+        {% for message in messages %}
+            {{message.user.first_name}} {{message.user.last_name}} {{message.created_at}}
+            <p>{{message.text}}</p>
+            {% for comment in message.comments.all %}
+            <p>{{comment.content}}</p>
+            {{comment.user.first_name}} {{comment.user.last_name}}
+            {% endfor %}
+            <form action="/comment/{{message.id}}" method="post">
+                {% csrf_token %}
+                <textarea name="the_comment" rows="2" cols="50"></textarea><br>
+                <button type="submit">Add Comment</button>
+            </form>
+        {% endfor %}
+    </div>
+</body>
+</html>
