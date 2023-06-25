@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div><a href="/logout">logout</a></div>
+    <h1>Welcome {{user.first_name}} !</h1>
+    <h2>{{the_book.title}}</h2>
+    <p>Added by: {{the_book.uploaded_by.first_name}} {{the_book.uploaded_by.first_name}}</p>
+    <p>Added on: {{the_book.created_at}}</p>
+    <p>Last updated on: {{the_book.updated_at}}</p>
+    <p>Description: {{the_book.desc}}</p>
+</body>
+</html>
