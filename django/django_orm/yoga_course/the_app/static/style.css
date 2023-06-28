@@ -1,0 +1,15 @@
+*{
+    padding: 5px;
+}
+
+.container{
+    display: flex;
+}
+
+label{
+    margin-right: 5px;
+    margin-bottom: 5px;
+}
+input{
+    margin-bottom: 5px;
+}
