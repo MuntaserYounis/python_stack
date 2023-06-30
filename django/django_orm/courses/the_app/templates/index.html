@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <form action="/create" method="post">
+            {% csrf_token %}
+            <div class="enter">
+                <h1>Add a new course</h1>
+                <label>Name:</label><input type="text" name="name"><br>
+                <label>Description:</label><textarea name="desc" rows="10" cols="50"></textarea><br>
+                <button type="submit">Add</button>
+            </div>
+        </form>
+        <div class="display">
+            <h3>Courses</h3>
+            <table>
+                <tr>
+                    <th>Course Name</th>
+                    <th>Description</th>
+                    <th>Date Added</th>
+                    <th>Actions</th>
+                </tr>
+                {% for course in courses %}
+                <tr>
+                    <td>{{course.name}}</td>
+                    <td>{{course.desc}}</td>
+                    <td>{{course.created_at}}</td>
+                    <td><a href="/courses/destroy/{{course.id}}">remove</a></td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</body>
+</html>
